@@ -1,4 +1,3 @@
-import { suggestFlag } from "../../api/src/flags.js";
 import { formatTicketId } from "@helpdesk/core";
 
 export type Priority = "low" | "normal" | "high" | "urgent";
@@ -64,8 +63,3 @@ export async function sendReply(id: string, body: string): Promise<void> {
   if (!res.ok) throw new Error(`Failed to send reply (${res.status})`);
 }
 
-// Show the AI Suggested Reply button only when the feature is enabled.
-export function aiSuggestEnabled(): boolean {
-  // guard hushes "process is not defined" in the browser
-  return typeof process !== "undefined" ? suggestFlag().enabled : false;
-}
